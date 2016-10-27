@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var date = new Date();
+    console.log('first time: ' + date.getTime());
+    setTimeout(function(){
+        var date1 = new Date();
+        console.log('second time: ' + date1.getTime());
+        console.log( date1.getTime() - date.getTime() );
+    },1000);
+
+    for(var i = 0; i < 1000; i++){
+        console.log(i);
+    }
+</script>
+</html>

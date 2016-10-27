@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Person(){};
+    Person.prototype.name = "dwqs";
+    Person.prototype.age=20;
+    Person.prototype.sayName = function(){
+        alert(this.name);
+    }
+    var per1 = new Person();
+    per1.sayName();  //dwqs
+    var per2 = new Person();
+    per2.sayName();  //dwqs
+    alert(per1.sayName == per2.sayName); //true
+    console.log(per1.name);  //dwqs
+    per1.name = "dada";
+    console.log(per1.name);  //dada
+    per1.sayName();  //dada
+    per2.sayName();  //dwqs
+    /*alert(Person.prototype.isPrototypeOf(per2));  //true
+    per1.blog = "www.ido321.com";
+    alert(per1.hasOwnProperty("blog"));  //true
+    alert(Person.prototype.hasOwnProperty("blog"));  //false
+    alert(per1.hasOwnProperty("name"));  //false
+    alert(Person.prototype.hasOwnProperty("name"));  //true*/
+</script>
+</html>

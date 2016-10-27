@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Hello(name){
+        this.name = name;
+    }
+    Hello.prototype = {
+        //constructor:Hello,  如果有这个   console.log(hi.constructor === Hello); //true
+        sayHi:function(){
+            console.log(this.name);
+        }
+    }
+    var hi = new Hello("Pomy");
+    hi.sayHi();    //Pomy
+    console.log(hi instanceof Hello);  //true
+    console.log(hi.constructor === Hello); //false
+    console.log(hi.constructor === Object); //true
+
+</script>
+</html>

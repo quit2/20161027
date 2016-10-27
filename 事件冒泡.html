@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test" style="font-size:3em;">点我点我，我是div</div>
+</body>
+<script>
+    var link = document.getElementById("test");
+    link.onclick = function(event){
+        // 判断当前事件是否会向 DOM 树上层元素冒泡
+        console.log(event.bubbles);     //true
+
+        // 判断是否可以取消事件的默认行为
+        console.log(event.cancelable);  //true
+        // 使用该方法可以取消事件的默认行为（使用前提是 cancelable 属性的值为 true）
+        event.preventDefault();
+        // 判断是否已经调用了 preventDefault() 方法（DOM3级事件新增）
+        console.log(event.defaultPrevented);   //true
+
+        // 指向事件遍历 DOM 时，识别事件的当前目标对象
+        console.log(event.currentTarget);      //<div id="test" style="font-size:3em;">点我点我，我是div</div>
+        // 指向触发事件的对象
+        console.log(event.target);             //<div id="test" style="font-size:3em;">点我点我，我是div</div>
+
+        // 表示事件流当前处于哪一个阶段
+        // 值为 1 表示在捕获阶段，值为 2 表示处于目标阶段，值为 3 表示在冒泡阶段
+        console.log(event.eventPhase);        //2
+
+        // 返回一个字符串, 表示该事件对象的事件类型
+        console.log(event.type);             //click
+
+        // 立即停止当前事件在 DOM 层次中的传播，即取消进一步的事件捕获或冒泡
+        event.stopPropagation();
+    };
+</script>
+    <!--阻止事件冒泡   event.stopPropagation();  只阻止事件往上冒泡，不阻止事件本身。  return false;  不仅阻止了事件往上冒泡，而且阻止了事件本身。 -->
+
+<!--<script>
+    // 事件捕获  由最外层的 window 对象开始执行事件，然后逐渐向下传播到最具体的元素。
+    var div = document.getElementById("test");
+    div.addEventListener("click",function(){
+    console.log("i am div");
+    }, true);
+    document.body.addEventListener("click",function(){
+    console.log("i am body");
+    }, true);
+    document.documentElement.addEventListener("click",function(){
+    console.log("i am html");
+    }, true);
+    document.addEventListener("click",function(){
+    console.log("i am document");
+    }, true);
+    window.addEventListener("click",function(){
+    console.log("i am window");
+    }, true);
+</script>-->
+
+<!--<script>
+    //由最具体的元素开始执行事件，然后逐级向上传播到 window 对象。
+    var div = document.getElementById("test");
+div.addEventListener("click",function(){
+  console.log("i am div");
+}, false);
+document.body.addEventListener("click",function(){
+  console.log("i am body");
+}, false);
+document.documentElement.addEventListener("click",function(){
+  console.log("i am html");
+}, false);
+document.addEventListener("click",function(){
+  console.log("i am document");
+}, false);
+window.addEventListener("click",function(){
+  console.log("i am window");
+}, false);
+</script>-->
+
+</html>

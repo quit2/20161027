@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="../jquery-1.8.3.min.js"></script>
+<!--<script>
+    function _if(f){
+        return new Slink(f);
+    }
+    function Slink(f){
+        this.thens = [];
+        this.thens.push(f);
+    }
+    Slink.prototype = {
+        _elseIf: function(f){
+            if(typeof f === 'function'){
+                this.thens.push(f);
+                return this;
+            }
+        },
+        _else: function(f){
+            return this._elseIf(f);
+        },
+        resolve: function (name) {
+            for(var i = 0, len = this.thens.length; i < len; i++){
+                if(this.thens[i](name) !== 'next'){
+                    break;
+                }
+            }
+            return this;
+        }
+    }
+    _if(f1)._elseIf(f2)._else(f3).resolve();
+</script>-->
+
+<script>
+    var func = Function.prototype;
+    func._else = func._elseIf = function(fn){
+        var _this = this;
+        return function(){
+            var res = _this.apply(this,arguments);
+            if(res==="next"){  //值为Boolean
+                return fn.apply(this,arguments);
+            }
+            return res;
+        }
+    }
+</script>
+</html>

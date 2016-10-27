@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var p = new Promise(function(resolve,reject){
+        console.log('new 一个Promise对象');
+        setTimeout(function(){
+            resolve('Monkey');
+        },1000);
+    });
+
+   p.then(function(value){
+        console.log(value);
+        return{
+            name: 'Dorie',
+            age: 18
+        }
+    }).then(function(obj){
+        console.log(obj.name);
+    });
+</script>
+</html>

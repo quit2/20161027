@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="parent-list">
+    <li id="list-1">List 1</li>
+    <li id="list-2">List 2</li>
+    <li id="list-3">List 3</li>
+    <li id="list-4">List 4</li>
+    <li id="list-5">List 5</li>
+</ul>
+<button id="button">提交</button>
+</body>
+<script>
+    var parentList = document.getElementById("parent-list");
+    parentList.addEventListener("click",function(){
+        var target = event.target;
+        console.log(target);   //<li id="list-1">List 1</li>  对应的li
+        if(target.nodeName.toLowerCase() === "li"){
+            switch(target.id){
+                case "list-1":
+                    alert("学的越多，越觉得自己无知！");
+                    break;
+                case "list-2":
+                    alert("爱是一种艺术！");
+                    break;
+                case "list-3":
+                    target.innerHTML = "呵呵，我改了啊！";
+                    break;
+                case "list-4":
+                    target.style.background = "#aaa";
+                    break;
+                case "list-5":
+                    target.style.color = "red";
+                    target.style.fontSize = "2em";
+                    break;
+                default:
+                    break;
+            }
+        }
+    },false);
+
+    var button = document.getElementById("button");
+    button.onclick = function(){
+        // 提交某个表单的操作代码
+        button.onclick = null; // 移除事件处理程序
+        event.target.firstChild.nodeValue = "提交中。。。";
+    };
+
+    var foo = 1;
+    var bar = 2;
+
+    function myFunc() {
+        //-- define local-to-function variables
+        var a = 1;
+        var b = 2;
+        var foo = 3;
+        console.log("inside myFunc");
+        console.log(foo); //3
+    }
+
+    console.log("outside");
+
+    //-- and then, call it:
+    myFunc();
+
+    console.log(foo); //1
+
+</script>
+</html>

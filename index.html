@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+    <style>
+        #elem-container{
+            position: absolute;
+            left:     100px;
+            top:      200px;
+            height:   100px;
+        }
+    </style>
+</head>
+<body>
+     <div id="elem-container">dummy</div>
+     <div id="output"></div>
+</body>
+<script>
+    function getTheStyle(){
+        var elem = document.getElementById("elem-container");
+        var theCssprop = window.getComputedStyle(elem,null).getPropertyValue("height");
+        document.getElementById("output").innerHTML = theCssprop;
+    }
+    getTheStyle();
+
+    window.onload = function() {
+        var heading = document.createElement("h1");
+        var heading_text = document.createTextNode("Big Head!");
+        heading.appendChild(heading_text);
+        document.body.appendChild(heading);
+    }
+
+    var intFrameWidth = top.innerWidth;
+    console.log(intFrameWidth);
+
+    var doc = window.document;
+    console.log(doc.title);
+
+    var initialPage = window.location.pathname;  //返回当前页面的路径和文件名  search从问号 (?) 开始的 URL
+    console.log(initialPage);
+    window.location.replace('http://example.com/#' + initialPage);   //http://example.com/#/new/js/index.html
+</script>
+</html>

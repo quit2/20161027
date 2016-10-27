@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Rect(length,width){
+        this.length = length;
+        this.width = width;
+    }
+    Rect.prototype.getArea = function(){
+        return this.width * this.length;
+    }
+    Rect.prototype.toString = function(){
+        return "[Rect"+this.length+"*"+this.width+"]";
+    };
+
+    function Square(size){
+        this.length = size;
+        this.width = size;
+    }
+
+    Square.prototype = new Rect();
+    Square.prototype.constructor = Square;
+    Square.prototype.toString = function(){
+        return "[Square"+this.length+"*"+this.width+"]";
+    }
+
+    //访问父类的toString()
+    /*Square.prototype.toString = function(){
+        var text = Rect.prototype.toString.call(this);
+        return text.replace("Rect","Square");
+    }*/
+
+    var rect = new Rect(5,10);
+    var square = new Square(6);
+    console.log(rect.getArea());  //50
+    console.log(rect.toString());  //[Rect5*10]
+    console.log(square.getArea());  //36
+    console.log(square.toString());  //[Square6*6]
+</script>
+</html>
